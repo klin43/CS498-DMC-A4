@@ -1,5 +1,5 @@
-kellylin04@instance-20260420-040211:~/processed_data$ ls
-_SUCCESS  part-00000-37df8466-35d3-4cea-9322-f13f57930cbf-c000.json
+![processed_data screenshot](Part2.1.png)
+
 kellylin04@instance-20260420-040211:~/processed_data$ cat part-00000-37df8466-35d3-4cea-9322-f13f57930cbf-c000.json
 {"company":"Taxi Affiliation Service Yellow","trip_count":2527,"avg_fare":13.61,"avg_fare_per_minute":1.06}
 {"company":"Chicago Carriage Cab Corp","trip_count":1893,"avg_fare":13.48,"avg_fare_per_minute":2.66}
@@ -19,3 +19,4 @@ kellylin04@instance-20260420-040211:~/processed_data$ cat part-00000-37df8466-35
 {"company":"Service Taxi Association","trip_count":18,"avg_fare":19.42,"avg_fare_per_minute":0.96}
 {"company":"Setare Inc","trip_count":17,"avg_fare":11.13,"avg_fare_per_minute":0.98}
 {"company":"American United Taxi Affiliation","trip_count":14,"avg_fare":21.43,"avg_fare_per_minute":0.85}
+
