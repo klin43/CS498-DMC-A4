@@ -161,7 +161,7 @@ def company_compare():
     """).collect()
 
     if len(result) < 2:
-        return jsonify({"error": "one or more companies not found"}), 400
+        return jsonify({"error": "one or more companies not found"})
 
     return jsonify({"comparison": [r.asDict() for r in result]})
     
