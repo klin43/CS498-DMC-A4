@@ -1,0 +1,9 @@
+Q1: FDB decouples the TMS and SS so that the two layers don’t depend on each other and can scale independently. The TMS handles the write path which assigns versions, checks for conflicts, and manages commits. The SS handles the read path by storing data shards and answers reads requests from clients.  
+
+Q2: During a write transaction in FDB, the Resolver is responsible for detecting read-write conflicts between concurrent transactions using lock-free optimistic concurrency control. This check happens during the commit phase, after the Proxy asks the Sequencer for the commit version, but before the transaction is finalized. If a conflict is detected, the transaction gets aborted and has to retry.
+
+Q3: The read version is a snapshot of the database at the start of the transaction. This allows all reads in that transaction to use a static view of the data. This is what gives FDB strict serializability (strong consistency), because it guarantees transactions don’t do partial reads. 
+
+Q4: Snapshot reads don’t get added to the transaction’s read conflict range, so they won’t cause the transaction to abort if the data changes later. Standard reads adds to the read conflict range, then during commit, checks the transaction’s conflict range, so if another transaction writes to the same data before commit, it can cause an abort.  You use snapshot reads for analytics or when strict serializability isn’t required. You use standard reads when you need strict serializability. 
+
+Q5: FDB has cheap recovery because the TS is stateless. This means that if the system fails, the system would recruit a new TS rather than replaying a redo log, which makes recovery fast. During a normal operation, LogServers store all the committed mutations, and StorageServers pull from these logs to apply updates and get the full database. 
