@@ -161,11 +161,10 @@ def company_compare():
     """).collect()
 
     if len(result) < 2:
-        return jsonify({"error": "one or more companies not found"})
+        return jsonify({"error": "one or more companies not found"}), 400
 
-    return jsonify({"comparison": [dict(r) for r in result]})
-
-
+    return jsonify({"comparison": [r.asDict() for r in result]})
+    
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
